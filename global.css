@@ -40,5 +40,86 @@ svg circle {
   fill-opacity: 0.6;  /* 60% opacity */
   stroke: white;
   stroke-width: 1;
-  pointer-events: auto
+  pointer-events: auto;
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+    );
+    fill: var(--color);
+}
+
+header {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+    margin-bottom: 1em;
+  }
+  
+  label {
+    margin-left: auto;
+    font-weight: 500;
+  }
+  
+  #selected-time {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  #any-time {
+    display: block;
+    color: #888;
+    font-style: italic;
+    font-size: 1em;
+  }
+  
+  /* Define the color variables for both map circles and legend items */
+.map circle,
+.legend > div {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+    );
+}
+
+/* Style the legend container */
+.legend {
+  display: flex;
+  gap: 1em;
+  margin-block: 1em;
+  align-items: center;
+}
+
+/* Style each legend item */
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.3em 0.8em;
+  border-radius: 1em;
+  background: var(--color, #ccc);
+  color: #222;
+  font-size: 1em;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  min-width: 7em;
+  justify-content: center;
+}
+
+/* Optional: Add a colored dot or box before the text for extra clarity */
+.legend > div::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: var(--color, #ccc);
+  margin-right: 0.5em;
+  border: 1px solid #bbb;
 }
